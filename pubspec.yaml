@@ -1,0 +1,64 @@
+name: redstring
+description: "Цифровое сердце для пар"
+
+# Не публиковать в pub.dev
+publish_to: 'none'
+
+# Версия приложения
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^4.3.0
+  firebase_auth: ^6.1.3
+  cloud_firestore: ^6.1.1
+  firebase_storage: ^13.0.5
+  image_picker: ^1.1.2
+  mockito: ^5.4.0
+  firebase_core_platform_interface: ^6.0.2
+
+  # Валидация
+  email_validator: ^3.0.0
+
+  # Управление состоянием
+  provider: ^6.1.5+1
+
+  # Работа с SVG
+  flutter_svg: ^2.0.7
+  shared_preferences: ^2.5.4
+
+  scratcher: ^2.1.2 # библиотека для стирания
+  flutter_animate: ^4.5.0 # для анимации сердечка
+  vibration: ^1.8.4  # Для управления вибрацией
+  intl: ^0.18.0      # Для красивого форматирования времени
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# Flutter-specific configuration
+flutter:
+  uses-material-design: true
+
+  # Assets (изображения, SVG и т.д.)
+  assets:
+    - assets/heart_top.svg
+    - assets/heart_bottom.svg
+    - assets/google_logo.png
+    - assets/game_icon.svg
+    - assets/
+
+  # Шрифты (опционально — можно убрать, если не используешь)
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: fonts/Roboto-Regular.ttf
