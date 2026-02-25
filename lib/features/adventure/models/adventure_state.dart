@@ -1,12 +1,10 @@
-// lib/features/adventure/models/adventure_state.dart
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class AdventureState {
   final List<int> usedIdeaIds;
   final int dailyViewCount;
-  final String lastViewDate; // формат: '2026-01-10'
+  final String lastViewDate;
 
   AdventureState({
     required this.usedIdeaIds,

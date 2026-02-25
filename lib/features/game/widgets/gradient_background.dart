@@ -16,8 +16,7 @@ class GradientBackground extends StatelessWidget {
         ),
       ),
       child: Material(
-        // <-- ДОБАВИЛИ Material
-        color: Colors.transparent, // <-- Прозрачный, чтобы градиент был виден
+        color: Colors.transparent,
         child: SafeArea(child: child),
       ),
     );

@@ -33,7 +33,6 @@ class _AdventureScreenState extends State<AdventureScreen> {
 
     _getTodayString();
 
-    // Проверка лимита на сегодня
     if (!state.canViewToday()) {
       setState(() {
         _showLimit = true;
@@ -42,15 +41,11 @@ class _AdventureScreenState extends State<AdventureScreen> {
       return;
     }
 
-    // Проверка: все идеи просмотрены?
     if (state.hasSeenAllIdeas()) {
-      // Сброс прогресса
       await AdventureState.initial().save();
-      // Рекурсивно перезапускаем загрузку с чистого листа
       return _loadNextIdea();
     }
 
-    // Выбираем случайную непросмотренную идею
     final allIds = List<int>.generate(dateIdeas.length, (i) => i);
     final availableIds = allIds
         .where((id) => !state.usedIdeaIds.contains(id))
@@ -59,13 +54,11 @@ class _AdventureScreenState extends State<AdventureScreen> {
     if (availableIds.isEmpty) {
       _currentIdea = 'Все идеи просмотрены! Начнём заново?';
     } else {
-      // Простой псевдослучайный выбор без повторов
       final randomIndex =
           DateTime.now().microsecondsSinceEpoch % availableIds.length;
       final selectedId = availableIds[randomIndex];
       _currentIdea = dateIdeas[selectedId];
 
-      // Обновляем состояние: +1 просмотр, обновляем дату, добавляем ID
       final newState = state.updateAfterView().copyWith(
         usedIdeaIds: [...state.usedIdeaIds, selectedId],
       );
@@ -111,14 +104,12 @@ class _AdventureScreenState extends State<AdventureScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Счётчик прогресса
             Text(
               '$_usedCount / ${dateIdeas.length}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 24),
 
-            // Контент
             if (_isLoading)
               const CircularProgressIndicator()
             else if (_showLimit)

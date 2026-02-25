@@ -1,5 +1,3 @@
-// lib/app.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redstring/features/auth/intro_screen_1.dart';

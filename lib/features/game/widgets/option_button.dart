@@ -35,7 +35,6 @@ class OptionButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Кружок слева для красоты (как маркер списка)
             Container(
               width: 20,
               height: 20,
@@ -49,7 +48,6 @@ class OptionButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            // Текст с переносом строк
             Expanded(
               child: Text(
                 text,
@@ -58,7 +56,7 @@ class OptionButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: isSelected ? Colors.white : Colors.black87,
                 ),
-                maxLines: null, // Разрешить неограниченное кол-во строк
+                maxLines: null,
                 textAlign: TextAlign.left,
               ),
             ),

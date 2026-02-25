@@ -14,10 +14,7 @@ class HeartbeatList extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.95),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: appGradientColor.withOpacity(0.5), // ← граница в цвете #C9C7FF
-          width: 1,
-        ),
+        border: Border.all(color: appGradientColor.withOpacity(0.5), width: 1),
       ),
       child: Consumer<HeartbeatProvider>(
         builder: (context, provider, child) {
@@ -48,7 +45,6 @@ class HeartbeatList extends StatelessWidget {
             );
           }
 
-          // Группировка по датам
           final groupedBeats = _groupByDate(beats);
 
           return ListView.builder(
@@ -61,7 +57,6 @@ class HeartbeatList extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Заголовок даты
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 16, 24, 12),
                     child: Text(
@@ -74,7 +69,6 @@ class HeartbeatList extends StatelessWidget {
                     ),
                   ),
 
-                  // Список биений за день
                   ...dayBeats.map(
                     (beat) => Padding(
                       padding: const EdgeInsets.symmetric(
@@ -134,7 +128,6 @@ class HeartbeatTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Временная метка с линией
           Column(
             children: [
               Container(
@@ -160,7 +153,6 @@ class HeartbeatTile extends StatelessWidget {
 
           SizedBox(width: 16),
 
-          // Время
           Text(
             heartbeat.formattedTime,
             style: TextStyle(
@@ -172,7 +164,6 @@ class HeartbeatTile extends StatelessWidget {
 
           SizedBox(width: 16),
 
-          // Карточка биения
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),

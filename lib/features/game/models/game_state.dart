@@ -1,7 +1,7 @@
 class QuizQuestion {
   final String questionText;
   final List<String> options;
-  final int correctOptionIndex; // Индекс правильного ответа (0-3)
+  final int correctOptionIndex;
 
   QuizQuestion({
     required this.questionText,
@@ -10,9 +10,4 @@ class QuizQuestion {
   });
 }
 
-// Состояние игры (можно добавить в adventure_state.dart)
-enum GamePhase {
-  setup, // Первый пользователь придумывает вопрос
-  playing, // Второй пользователь отвечает
-  result, // Показ результата
-}
+enum GamePhase { setup, playing, result }

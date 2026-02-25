@@ -1,4 +1,3 @@
-// lib/features/settings/screens/partner_linking_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redstring/service/user_service.dart';
@@ -54,7 +53,7 @@ class _PartnerLinkingScreenState extends State<PartnerLinkingScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Партнёр подключён! ❤️')));
+      ).showSnackBar(const SnackBar(content: Text('Партнёр подключён!')));
       Navigator.pop(context);
     } catch (e) {
       if (!mounted) return;

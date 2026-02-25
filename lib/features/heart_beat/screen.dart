@@ -46,7 +46,7 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
       await Future.delayed(const Duration(milliseconds: 80));
       await HapticFeedback.mediumImpact();
     } catch (e) {
-      debugPrint('⚠️ Haptic error: $e');
+      debugPrint('Haptic error: $e');
     }
   }
 
@@ -88,7 +88,7 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
         );
       }
     } catch (e) {
-      debugPrint('❌ Ошибка: $e');
+      debugPrint('Ошибка: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -140,7 +140,6 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // Кнопка-сердце (круг с иконкой)
               Expanded(
                 flex: 3,
                 child: Center(
@@ -155,25 +154,19 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
                         width: 250,
                         height: 250,
                         decoration: BoxDecoration(
-                          // КРУГЛАЯ ФОРМА
                           shape: BoxShape.circle,
-                          // БЕЛЫЙ ФОН ВНУТРИ
                           color: Colors.white,
-                          // ✅ РАЗМЫТИЕ / СВЕЧЕНИЕ ВОКРУГ
                           boxShadow: [
-                            // Внешнее свечение (мягкое)
                             BoxShadow(
                               color: appGradientColor.withOpacity(0.6),
                               blurRadius: 40,
                               spreadRadius: 10,
                             ),
-                            // Дополнительное свечение (более сильное)
                             BoxShadow(
                               color: appGradientColor.withOpacity(0.4),
                               blurRadius: 60,
                               spreadRadius: 20,
                             ),
-                            // Дальнее свечение (для градиента)
                             BoxShadow(
                               color: appGradientColor.withOpacity(0.2),
                               blurRadius: 80,
@@ -181,7 +174,6 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
                             ),
                           ],
                         ),
-                        // ✅ ФИОЛЕТОВАЯ ОБОДКА (внутри контейнера)
                         child: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -193,7 +185,6 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // ИКОНКА СЕРДЦА
                               Icon(
                                 Icons.favorite,
                                 size: 80,
@@ -217,7 +208,6 @@ class _HeartbeatScreenState extends State<HeartbeatScreen> {
                   ),
                 ),
               ),
-              // Нижняя панель со списком
               Expanded(
                 flex: 2,
                 child: Container(

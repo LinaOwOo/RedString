@@ -14,7 +14,6 @@ class GameScreen extends StatefulWidget {
 class _QuizGameScreenState extends State<GameScreen> {
   GamePhase _currentPhase = GamePhase.setup;
 
-  // Контроллеры для ввода текста
   final _questionController = TextEditingController();
   final _optionControllers = List.generate(
     4,
@@ -36,7 +35,6 @@ class _QuizGameScreenState extends State<GameScreen> {
     super.dispose();
   }
 
-  // --- ЭКРАН 1: СОЗДАНИЕ ВОПРОСА ---
   Widget _buildSetupScreen() {
     return SingleChildScrollView(
       child: Column(
@@ -49,7 +47,6 @@ class _QuizGameScreenState extends State<GameScreen> {
           ),
           const SizedBox(height: 30),
 
-          // Поле вопроса (многострочное)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: TextField(
@@ -69,7 +66,6 @@ class _QuizGameScreenState extends State<GameScreen> {
           ),
           const SizedBox(height: 20),
 
-          // --- ВАРИАНТЫ ОТВЕТОВ С РАДИО ВНУТРИ ---
           ...List.generate(4, (index) {
             final isSelected = _selectedCorrectOptionIndex == index;
             return Padding(
@@ -96,7 +92,6 @@ class _QuizGameScreenState extends State<GameScreen> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Радио-кнопка внутри контейнера
                       Container(
                         width: 24,
                         height: 24,
@@ -121,7 +116,6 @@ class _QuizGameScreenState extends State<GameScreen> {
                             : null,
                       ),
                       const SizedBox(width: 12),
-                      // Поле ввода (многострочное)
                       Expanded(
                         child: TextField(
                           controller: _optionControllers[index],
@@ -142,10 +136,6 @@ class _QuizGameScreenState extends State<GameScreen> {
             );
           }),
 
-          // ---------------------------------------------
-          const SizedBox(height: 40),
-
-          // Кнопка "Готово"
           Padding(
             padding: const EdgeInsets.only(bottom: 40),
             child: GestureDetector(
@@ -171,7 +161,6 @@ class _QuizGameScreenState extends State<GameScreen> {
     );
   }
 
-  // --- ЭКРАН 2: ОТВЕТ ---
   Widget _buildPlayScreen() {
     return Column(
       children: [
@@ -217,7 +206,6 @@ class _QuizGameScreenState extends State<GameScreen> {
     );
   }
 
-  // --- ЭКРАН 3: РЕЗУЛЬТАТ ---
   Widget _buildResultScreen() {
     return Center(
       child: Column(
@@ -249,8 +237,6 @@ class _QuizGameScreenState extends State<GameScreen> {
       ),
     );
   }
-
-  // --- ЛОГИКА ---
 
   void _saveQuestionAndProceed() {
     if (_questionController.text.isEmpty) {
@@ -302,7 +288,6 @@ class _QuizGameScreenState extends State<GameScreen> {
   }
 
   void _goToMain() {
-    // Возврат на главный экран
     Navigator.of(context).pop();
   }
 
@@ -321,7 +306,6 @@ class _QuizGameScreenState extends State<GameScreen> {
     return GradientBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        // --- СТРЕЛКА НАЗАД В ВЕРХНЕМ ЛЕВОМ УГЛУ ---
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

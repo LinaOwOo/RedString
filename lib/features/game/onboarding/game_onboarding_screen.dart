@@ -1,5 +1,3 @@
-// lib/features/game/onboarding/game_onboarding_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +12,6 @@ class GameOnboardingScreen extends StatefulWidget {
 class _GameOnboardingScreenState extends State<GameOnboardingScreen> {
   late PageController _pageController;
 
-  // Тексты для каждого экрана
   final List<Map<String, String>> _texts = [
     {
       'title': 'Биение сердец',
@@ -74,8 +71,6 @@ class _GameOnboardingScreenState extends State<GameOnboardingScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 40),
-
-                  // 🔝 Заголовок + подзаголовок
                   Text(
                     textData['title']!,
                     style: const TextStyle(
@@ -110,9 +105,7 @@ class _GameOnboardingScreenState extends State<GameOnboardingScreen> {
 
                   const SizedBox(height: 24),
 
-                  // 🔄 Кнопки — по центру
                   if (index == _texts.length - 1)
-                    // Последний экран → "Поехали"
                     ElevatedButton(
                       onPressed: () async {
                         await _markAsSeen();
@@ -140,7 +133,6 @@ class _GameOnboardingScreenState extends State<GameOnboardingScreen> {
                       ),
                     )
                   else
-                    // Промежуточные экраны → кнопка "Далее"
                     ElevatedButton(
                       onPressed: () {
                         _pageController.nextPage(

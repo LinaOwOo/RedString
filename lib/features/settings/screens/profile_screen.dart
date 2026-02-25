@@ -18,11 +18,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return const Center(child: CircularProgressIndicator());
         }
 
-        // Данные пользователя
         final displayName = auth.displayName ?? 'Пользователь';
         final email = auth.email ?? '';
         final photoUrl = auth.photoUrl;
-        final isLinked = auth.isPartnerLinked;
         final partnerId = auth.partnerId;
 
         return Scaffold(
@@ -39,7 +37,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                // 👤 Аватар + имя
                 Stack(
                   children: [
                     CircleAvatar(
@@ -56,7 +53,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             )
                           : null,
                     ),
-                    // Кнопка смены фото (вызов ImagePicker + upload)
                     Positioned(
                       right: 0,
                       bottom: 0,
@@ -82,12 +78,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 const SizedBox(height: 32),
 
-                // 💕 Секция партнёра
                 _buildPartnerSection(auth, partnerId),
 
                 const SizedBox(height: 24),
 
-                // ⚙️ Кнопки действий
                 ElevatedButton.icon(
                   onPressed: () => _editProfile(auth),
                   icon: const Icon(Icons.edit),
@@ -114,7 +108,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  // Переход на PartnerLinkingScreen
                   Navigator.pushNamed(context, '/partner-linking');
                 },
                 child: const Text('Подключить партнёра'),
@@ -125,7 +118,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
 
-    // Если партнёр подключён — загружаем его данные через Stream
     return StreamBuilder<DocumentSnapshot>(
       stream: FirebaseFirestore.instance
           .collection('users')
@@ -204,7 +196,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (confirm == true) {
       try {
-        // Обновляем оба документа: убираем partnerId
         final batch = FirebaseFirestore.instance.batch();
         final myRef = FirebaseFirestore.instance
             .collection('users')

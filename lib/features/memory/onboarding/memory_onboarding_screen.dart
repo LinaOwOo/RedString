@@ -1,5 +1,3 @@
-// lib/features/memories/onboarding/memories_onboarding_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,7 +52,6 @@ class _MemoriesOnboardingScreenState extends State<MemoriesOnboardingScreen> {
             children: [
               const SizedBox(height: 60),
 
-              // 🔝 Заголовок и подзаголовок
               const Text(
                 'Наши воспоминания',
                 style: TextStyle(
@@ -67,11 +64,10 @@ class _MemoriesOnboardingScreenState extends State<MemoriesOnboardingScreen> {
 
               const SizedBox(height: 32),
 
-              // 🖼️ SVG — можно заменить на реальное изображение
               Expanded(
                 child: Center(
                   child: SvgPicture.asset(
-                    'assets/onboarding_memories_1.svg', // Убедись, что файл существует
+                    'assets/onboarding_memories_1.svg',
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -79,7 +75,6 @@ class _MemoriesOnboardingScreenState extends State<MemoriesOnboardingScreen> {
 
               const SizedBox(height: 24),
 
-              // 🟣 Кнопка "Далее" — по центру
               ElevatedButton(
                 onPressed: () async {
                   await _markAsSeen();

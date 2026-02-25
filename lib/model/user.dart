@@ -40,7 +40,6 @@ class User {
     };
   }
 
-  // Immutable copyWith для обновления состояния
   User copyWith({
     String? id,
     String? email,

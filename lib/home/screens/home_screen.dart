@@ -10,16 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // Вспомогательная функция: проверить и открыть игру
   Future<void> _openGame(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final seen = prefs.getBool('game_onboarding_seen') ?? false;
 
     if (seen) {
-      // Уже прошёл — сразу в игру
       Navigator.pushNamed(context, '/game_main');
     } else {
-      // Нужно пройти онбординг
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => const GameOnboardingScreen()),
@@ -34,7 +31,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Аналогично для сердца
   Future<void> _openHeart(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final seen = prefs.getBool('heart_onboarding_seen') ?? false;
@@ -49,7 +45,6 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
-  // И для приключений
   Future<void> _openAdventure(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final seen = prefs.getBool('adventure_onboarding_seen') ?? false;
@@ -64,7 +59,6 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
-  //Для воспоминаний
   Future<void> _openMemories(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final seen = prefs.getBool('memories_onboarding_seen') ?? false;
@@ -205,9 +199,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             IconButton(
               icon: SvgPicture.asset('assets/home.svg', width: 32, height: 32),
-              onPressed: () {
-                // Остаёмся здесь
-              },
+              onPressed: () {},
             ),
             IconButton(
               icon: SvgPicture.asset(
@@ -231,9 +223,7 @@ class HomeScreen extends StatelessWidget {
             ),
             IconButton(
               icon: SvgPicture.asset('assets/user.svg', width: 32, height: 32),
-              onPressed: () {
-                // Профиль
-              },
+              onPressed: () {},
             ),
           ],
         ),

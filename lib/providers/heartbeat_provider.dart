@@ -26,7 +26,6 @@ class HeartbeatProvider extends ChangeNotifier {
     _listenToPartnerHeartbeats(partnerName);
   }
 
-  // Отправка биения
   Future<void> sendHeartbeat() async {
     if (_currentUserId == null ||
         _partnerId == null ||
@@ -40,27 +39,23 @@ class HeartbeatProvider extends ChangeNotifier {
       senderId: _currentUserId!,
       senderName: _currentUserName!,
       receiverId: _partnerId!,
-      distance: 50, // TODO: рассчитать реальное расстояние
+      distance: 50, // TODO: рассчитать реальное расстояние через геолокацию
       isFromPartner: false,
     );
 
-    // Добавляем локально для мгновенного отклика UI
     _addLocally(heartbeat);
 
-    // Сохраняем в Firebase
     try {
       await _firestore.collection('heartbeats').add(heartbeat.toJson());
-      debugPrint('✅ Сердце отправлено: ${heartbeat.id}');
+      debugPrint('Сердце отправлено: ${heartbeat.id}');
     } catch (e) {
-      debugPrint('❌ Ошибка отправки: $e');
-      // Откат локального изменения при ошибке
+      debugPrint('Ошибка отправки: $e');
       _heartbeats.removeWhere((h) => h.id == heartbeat.id);
       notifyListeners();
       rethrow;
     }
   }
 
-  // Прослушивание биений от партнёра
   void _listenToPartnerHeartbeats(String partnerName) {
     if (_partnerId == null || _currentUserId == null) return;
 
@@ -87,7 +82,6 @@ class HeartbeatProvider extends ChangeNotifier {
         });
   }
 
-  // Локальное добавление
   void _addLocally(HeartBeat heartbeat) {
     if (!_heartbeats.any((h) => h.id == heartbeat.id)) {
       _heartbeats.insert(0, heartbeat);
@@ -95,7 +89,6 @@ class HeartbeatProvider extends ChangeNotifier {
     }
   }
 
-  // Загрузка истории за сегодня
   Future<void> loadTodayHeartbeats() async {
     if (_currentUserId == null) return;
 
@@ -111,12 +104,8 @@ class HeartbeatProvider extends ChangeNotifier {
             isGreaterThanOrEqualTo: startOfDay.toIso8601String(),
           )
           .where('timestamp', isLessThan: endOfDay.toIso8601String())
-          .where(
-            (FirebaseFirestore.instance
-                .collection('heartbeats')
-                .where('receiverId', isEqualTo: _currentUserId)
-                .where('senderId', isEqualTo: _partnerId)),
-          )
+          .where('receiverId', isEqualTo: _currentUserId)
+          .where('senderId', isEqualTo: _partnerId)
           .orderBy('timestamp', descending: true)
           .get();
 
@@ -130,15 +119,30 @@ class HeartbeatProvider extends ChangeNotifier {
         _heartbeats.add(heartbeat);
       }
       notifyListeners();
+
+      debugPrint('Загружено ${querySnapshot.docs.length} биений за сегодня');
     } catch (e) {
-      debugPrint('❌ Ошибка загрузки истории: $e');
+      debugPrint('Ошибка загрузки истории: $e');
+      rethrow;
     }
   }
 
-  // Очистка
   void clearHeartbeats() {
     _heartbeats.clear();
     notifyListeners();
+  }
+
+  int get todayCount {
+    final today = DateTime.now();
+    final startOfDay = DateTime(today.year, today.month, today.day);
+    return _heartbeats.where((h) => h.timestamp.isAfter(startOfDay)).length;
+  }
+
+  HeartBeat? get lastPartnerHeartbeat {
+    return _heartbeats.firstWhere(
+      (h) => h.isFromPartner,
+      orElse: () => null as HeartBeat,
+    );
   }
 
   @override

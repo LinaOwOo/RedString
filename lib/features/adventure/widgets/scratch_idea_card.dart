@@ -1,5 +1,3 @@
-// lib/features/adventure/widgets/scratch_idea_card.dart
-
 import 'package:flutter/material.dart';
 import 'package:scratcher/scratcher.dart';
 
@@ -22,7 +20,6 @@ class _ScratchIdeaCardState extends State<ScratchIdeaCard> {
 
   @override
   Widget build(BuildContext context) {
-    // Квадрат: 70% от меньшей стороны экрана
     final size = MediaQuery.of(context).size;
     final cardSize = size.shortestSide * 0.7;
 
@@ -33,7 +30,7 @@ class _ScratchIdeaCardState extends State<ScratchIdeaCard> {
         child: Scratcher(
           brushSize: 35,
           threshold: 50,
-          color: const Color(0xFFFFB6C1), // нежно-розовый
+          color: const Color(0xFFFFB6C1),
           onChange: (progress) {
             if (progress > 0.8 && !_isRevealed) {
               setState(() => _isRevealed = true);
@@ -56,7 +53,6 @@ class _ScratchIdeaCardState extends State<ScratchIdeaCard> {
             ),
             child: Stack(
               children: [
-                // Фоновая "замазка" с волнистой линией
                 if (!_isRevealed)
                   Positioned.fill(
                     child: Container(
@@ -69,7 +65,6 @@ class _ScratchIdeaCardState extends State<ScratchIdeaCard> {
                       ),
                     ),
                   ),
-                // Текст или подсказка
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -103,7 +98,6 @@ class _ScratchIdeaCardState extends State<ScratchIdeaCard> {
   }
 }
 
-// Волнистая линия — как на твоём макете
 class WaveOverlayPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

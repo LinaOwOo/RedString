@@ -13,7 +13,7 @@ class NextArrowButton extends StatelessWidget {
         width: 60,
         height: 60,
         decoration: BoxDecoration(
-          color: const Color(0xFFA6B1E1), // Фиолетовый цвет кнопки
+          color: const Color(0xFFA6B1E1),
           shape: BoxShape.circle,
         ),
         child: const Icon(Icons.arrow_forward, color: Colors.white, size: 30),
