@@ -43,3 +43,29 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase ключи
+google-services.json
+GoogleService-Info.plist
+
+# Переменные окружения
+.env
+.env.local
+*.env
+
+# Сборки
+build/
+*.apk
+*.aab
+*.ipa
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Логи
+*.log
+
+# Локальные настройки
+local.properties

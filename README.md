@@ -1,16 +1,45 @@
-# redstring
+# ❤️ RedString
 
-A new Flutter project.
+**Приложение для пар, которые хотят оставаться на связи**
 
-## Getting Started
+RedString — это мобильное приложение, которое позволяет партнёрам обмениваться «биениями сердца», отслеживать историю взаимодействий и оставаться ближе друг к другу, даже на расстоянии.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## Возможности
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+-  **Отправка биений сердца** — мгновенное уведомление партнёру
+-  **История биений** — просмотр всех отправленных и полученных сердец за день
+-  **Профиль пользователя** — фото, имя, настройки аккаунта
+-  **Подключение пары** — привязка к партнёру по email или коду
+-  **Расстояние между партнёрами** — отображение дистанции в реальном времени (в разработке)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+---
+
+## Скриншоты
+
+| Главная | Профиль | История |
+|:-------:|:-------:|:-------:|
+| ![Главная](screenshots/home.png) | ![Пример игры](screenshots/heartbeat.png) | ![Экран сердцебиения](screenshots/game.png) |
+
+
+## Технологии
+
+| Категория | Технологии |
+|-----------|------------|
+| **Фреймворк** | Flutter 3.x |
+| **Язык** | Dart |
+| **Бэкенд** | Firebase (Auth, Firestore) |
+| **State Management** | Provider |
+| **Локальное хранилище** | Hive / SharedPreferences |
+| **Платформы** | Android, iOS |
+
+
+## Установка и запуск
+
+### 1. Клонирование репозитория
+
+```bash
+git clone https://github.com/ВАШ_НИК/redstring.git
+cd redstring
